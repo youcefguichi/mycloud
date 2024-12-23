@@ -7,6 +7,7 @@ metadata:
 spec:
   interval: 60m
   releaseName: kafka-cluster-operator-failover
+  chart:
     spec:
       chart: kafka
       version: 4.11.1
