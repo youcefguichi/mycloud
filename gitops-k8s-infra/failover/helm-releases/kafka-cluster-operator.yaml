@@ -2,11 +2,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: kafka
-  namespace: infrastructure
+  name: kafka-cluster-operator-production
+  namespace: kafka-production
 spec:
   interval: 60m
-  releaseName: ingress-nginx
+  releaseName: kafka-cluster-operator-production
   chart:
     spec:
       chart: kafka
@@ -20,7 +20,8 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: kafka
-  namespace: infrastructure
+  namespace: kafka-production
 spec:
   interval: 60m
   url: https://strimzi.io/charts/
+

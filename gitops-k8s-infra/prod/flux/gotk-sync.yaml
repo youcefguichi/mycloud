@@ -29,6 +29,19 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: gitops-k8s-infra-prod-dependencies
+  namespace: flux-system
+spec:
+  interval: 24h0m0s
+  path: ./gitops-k8s-infra/production/dependencies
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: mycloud
+---    
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: gitops-k8s-infra-prod-helm-releases
   namespace: flux-system
 spec:
@@ -38,6 +51,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: mycloud
+  dependsOn:
+  - name: gitops-k8s-infra-prod-dependencies
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -51,3 +66,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: mycloud
+  dependsOn:
+  - name: gitops-k8s-infra-prod-dependencies
