@@ -33,7 +33,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h0m0s
-  path: ./gitops-k8s-infra/production/dependencies
+  path: ./gitops-k8s-infra/prod/dependencies
   prune: false
   sourceRef:
     kind: GitRepository
