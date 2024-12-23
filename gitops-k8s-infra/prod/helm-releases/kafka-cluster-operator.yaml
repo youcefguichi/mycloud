@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kafka-cluster-operator-production
@@ -9,14 +9,14 @@ spec:
   releaseName: kafka-cluster-operator-production
   chart:
     spec:
-      chart: kafka
-      version: 4.11.1
+      chart: strimzi-kafka-operator
+      version: 0.45.0
       sourceRef:
         kind: HelmRepository
         name: kafka
       interval: 10m
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: kafka

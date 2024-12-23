@@ -9,8 +9,8 @@ spec:
   releaseName: kafka-cluster-operator-failover
   chart:
     spec:
-      chart: kafka
-      version: 4.11.1
+      chart: strimzi-kafka-operator
+      version: 0.45.0
       sourceRef:
         kind: HelmRepository
         name: kafka
