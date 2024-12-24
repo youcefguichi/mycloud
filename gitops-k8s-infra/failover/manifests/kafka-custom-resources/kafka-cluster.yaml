@@ -70,14 +70,8 @@ spec:
         memory: "500Mi"
         cpu: "1"
     template:
-      # podDisruptionBudget:
-      #   maxUnavailable: 0
-      # pod:
-      #   metadata:
-      #     annotations:
-      #       prometheus.io/path: /metrics
-      #       prometheus.io/port: "8443"
-      #       prometheus.io/scrape: "true"         
+      podDisruptionBudget:
+        maxUnavailable: 0    
     config:
       default.replication.factor:                2
       min.insync.replicas:                       2
