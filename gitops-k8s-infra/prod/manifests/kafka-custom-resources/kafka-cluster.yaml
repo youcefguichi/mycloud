@@ -3,6 +3,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
   name: kafka-production-brokers
+  namespace: kafka-production
   labels:
     strimzi.io/cluster: kafka-production-cluster
 spec:
@@ -21,6 +22,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
   name: kafka-production-controllers
+  namespace: kafka-production
   labels:
     strimzi.io/cluster: kafka-production-cluster
 spec:

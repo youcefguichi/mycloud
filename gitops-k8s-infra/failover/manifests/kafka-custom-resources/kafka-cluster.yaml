@@ -3,6 +3,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
   name: kafka-failover-brokers
+  namespace: kafka-failover
   labels:
     strimzi.io/cluster: kafka-failover-cluster
 spec:
@@ -21,6 +22,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
   name: kafka-failover-controllers
+  namespace: kafka-failover
   labels:
     strimzi.io/cluster: kafka-failover-cluster
 spec:
