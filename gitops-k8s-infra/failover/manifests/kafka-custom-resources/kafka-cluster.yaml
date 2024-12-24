@@ -1,0 +1,101 @@
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaNodePool
+metadata:
+  name: kafka-failover-brokers
+  labels:
+    strimzi.io/cluster: kafka-failover-cluster
+spec:
+  replicas: 1
+  roles:
+    - controller
+  storage:
+    type: jbod
+    volumes:
+      - id: 0
+        type: persistent-claim
+        size: 10Gi
+        deleteClaim: false
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaNodePool
+metadata:
+  name: kafka-failover-controllers
+  labels:
+    strimzi.io/cluster: kafka-failover-cluster
+spec:
+  replicas: 1
+  roles:
+    - controller
+  storage:
+    type: jbod
+    volumes:
+      - id: 0
+        type: persistent-claim
+        size: 10Gi
+        deleteClaim: false
+---        
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  name: kafka-failover-cluster
+  namespace: kafka-failover
+  labels:
+    app: kafka-failover-cluster
+spec:
+  kafka:
+    version: 3.8.0
+    listeners:
+      - name: plain
+        port: 9092
+        type: internal
+        tls: false
+      # - name: tls
+      #   port: 9093
+      #   type: internal
+      #   tls: false
+      # - name: external
+      #   port: 9094
+      #   type: loadbalancer
+      #   tls: false
+      #   authentication:
+      #     type: scram-sha-512
+    resources:
+      requests:
+        memory: "500Mi"
+        cpu: "500m"
+      limits:
+        memory: "500Mi"
+        cpu: "1"
+    template:
+      # podDisruptionBudget:
+      #   maxUnavailable: 0
+      # pod:
+      #   metadata:
+      #     annotations:
+      #       prometheus.io/path: /metrics
+      #       prometheus.io/port: "8443"
+      #       prometheus.io/scrape: "true"         
+    config:
+      # default.replication.factor:                2
+      # min.insync.replicas:                       2
+      # offsets.topic.replication.factor:          2
+      # transaction.state.log.min.isr:             2
+      # transaction.state.log.replication.factor:  2
+  entityOperator:
+    topicOperator:
+      # resources:
+      #   requests:
+      #     memory: "256Mi"
+      #     cpu: "200m"
+      #   limits:
+      #     memory: "256Mi"
+      #     cpu: "200m"
+    userOperator:
+      resources:
+        # requests:
+        #   memory: "512Mi"
+        #   cpu: "200m"
+        # limits:
+        #   memory: "512Mi"
+        #   cpu: "1"
