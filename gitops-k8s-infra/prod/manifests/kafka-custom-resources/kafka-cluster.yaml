@@ -41,6 +41,9 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
   name: kafka-production-cluster
+  annotations:
+    strimzi.io/kraft: enabled
+    strimzi.io/node-pools: enabled  
   namespace: kafka-production
   labels:
     app: kafka-production-cluster

@@ -41,6 +41,9 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
   name: kafka-failover-cluster
+  annotations:
+    strimzi.io/kraft: enabled
+    strimzi.io/node-pools: enabled
   namespace: kafka-failover
   labels:
     app: kafka-failover-cluster
