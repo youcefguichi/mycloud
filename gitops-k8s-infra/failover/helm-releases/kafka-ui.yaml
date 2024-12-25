@@ -2,11 +2,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: kafka-ui-production
-  namespace: kafka-production
+  name: kafka-ui-failover
+  namespace: kafka-failover
 spec:
   interval: 60m
-  releaseName: kafka-ui-production
+  releaseName: kafka-ui-failover
   chart:
     spec:
       chart: akhq
@@ -21,13 +21,13 @@ spec:
         connections:
           kafka-production-cluster:
             properties:
-              bootstrap.servers: "kafka-production-cluster-kafka-bootstrap:9092"    
+              bootstrap.servers: "kafka-failover-cluster-kafka-bootstrap:9092"    
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: akhq
-  namespace: kafka-production
+  namespace: kafka-failover
 spec:
   interval: 60m
   url: https://akhq.io/

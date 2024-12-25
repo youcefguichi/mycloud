@@ -55,16 +55,6 @@ spec:
         port: 9092
         type: internal
         tls: false
-      # - name: tls
-      #   port: 9093
-      #   type: internal
-      #   tls: false
-      # - name: external
-      #   port: 9094
-      #   type: loadbalancer
-      #   tls: false
-      #   authentication:
-      #     type: scram-sha-512
     resources:
       requests:
         memory: "500Mi"
